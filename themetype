@@ -1,0 +1,264 @@
+/**
+ * Utility types for common patterns
+ */
+type ColorPalette = Record<string, string>;
+type SizeScale = Record<string, string>;
+type ComponentTokens = Record<string, ColorPalette | SizeScale>;
+
+/**
+ * Defines the complete color palette for a theme
+ * @property background - Background colors
+ * @property text - Text colors
+ * @property border - Border colors
+ * @property input - Input-specific colors
+ * @property button - Button-specific colors
+ * @property social - Social platform brand colors
+ * @property state - State colors (error, warning, success, etc.)
+ */
+export type ThemeColors = {
+  background: {
+    primary: string;
+    secondary: string;
+    tertiary: string;
+    accent: string;
+    accentHover: string;
+    surface?: string;
+  };
+  text: {
+    primary: string;
+    secondary: string;
+    tertiary: string;
+    accent: string;
+    onAccent?: string;
+    error: string;
+    success?: string;
+    warning?: string;
+    info?: string;
+  };
+  border: {
+    primary: string;
+    secondary: string;
+    accent?: string;
+    error?: string;
+  };
+  input?: {
+    background: string;
+    border: string;
+    placeholder: string;
+    disabled?: string;
+  };
+  button: {
+    primary: {
+      background: string;
+      text: string;
+      hover: string;
+      disabled?: string;
+    };
+    secondary?: {
+      background: string;
+      text: string;
+      hover: string;
+    };
+  };
+  social?: {
+    google?: {
+      background: string;
+      text: string;
+      hover?: string;
+    };
+    microsoft?: {
+      background: string;
+      text: string;
+    };
+    apple?: {
+      background: string;
+      text: string;
+    };
+  };
+  state?: {
+    error?: string;
+    warning?: string;
+    success?: string;
+    info?: string;
+  };
+};
+
+/**
+ * Typography system for the theme
+ * @property fontFamily - Font stacks
+ * @property fontSize - Font size scale
+ * @property fontWeight - Font weights
+ * @property lineHeight - Line heights
+ * @property letterSpacing - Letter spacing values
+ */
+export type ThemeTypography = {
+  fontFamily: {
+    sans: string;
+    serif: string;
+    mono: string;
+    display?: string;
+  };
+  fontSize: SizeScale & {
+    xs: string;
+    sm: string;
+    base: string;
+    lg: string;
+    xl: string;
+    '2xl': string;
+    '3xl': string;
+    '4xl': string;
+    '5xl'?: string;
+    '6xl'?: string;
+  };
+  fontWeight?: {
+    light: string | number;
+    normal: string | number;
+    medium: string | number;
+    bold: string | number;
+  };
+  lineHeight?: SizeScale;
+  letterSpacing?: SizeScale;
+};
+
+/**
+ * Spacing system (margin, padding, etc.)
+ * Follows a standard size scale
+ */
+export type ThemeSpacing = SizeScale & {
+  0: string;
+  1: string;
+  2: string;
+  3: string;
+  4: string;
+  5: string;
+  6: string;
+  8: string;
+  10: string;
+  12: string;
+  16: string;
+  20?: string;
+  24?: string;
+  32?: string;
+  40?: string;
+  48?: string;
+  56?: string;
+  64?: string;
+};
+
+/**
+ * Border radius values
+ */
+export type ThemeBorderRadius = SizeScale & {
+  none: string;
+  sm: string;
+  default: string;
+  md: string;
+  lg: string;
+  xl: string;
+  '2xl': string;
+  '3xl': string;
+  full: string;
+};
+
+/**
+ * Shadow system
+ */
+export type ThemeShadows = {
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+  inner?: string;
+  none?: string;
+};
+
+/**
+ * Transition timing and easing
+ */
+export type ThemeTransitions = {
+  fast: string;
+  default: string;
+  slow: string;
+  easing?: {
+    standard: string;
+    accelerate: string;
+    decelerate: string;
+  };
+};
+
+/**
+ * Breakpoints for responsive design
+ */
+export type ThemeBreakpoints = {
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+  '2xl'?: string;
+};
+
+/**
+ * Z-index scale for layering
+ */
+export type ThemeZIndex = {
+  auto?: string;
+  dropdown: number;
+  sticky: number;
+  banner: number;
+  overlay: number;
+  modal: number;
+  popover: number;
+  tooltip: number;
+  toast: number;
+};
+
+/**
+ * Component-specific theme tokens
+ */
+export type ThemeComponents = {
+  card?: {
+    background: string;
+    shadow: string;
+    borderRadius?: string;
+  };
+  navbar?: {
+    background: string;
+    text: string;
+    height?: string;
+  };
+  // Add more components as needed
+};
+
+/**
+ * Supported theme variants
+ */
+export type ThemeVariant = 'light' | 'dark' | 'purple' | 'ocean' | 'forest' | 'sunset';
+
+/**
+ * Complete theme definition
+ * @property colors - Color palette
+ * @property typography - Typography system
+ * @property spacing - Spacing scale
+ * @property borderRadius - Border radius values
+ * @property shadows - Shadow system
+ * @property transitions - Transition timing
+ * @property breakpoints - Responsive breakpoints
+ * @property zIndex - Z-index scale
+ * @property components - Component-specific tokens
+ */
+export type Theme = {
+  colors: ThemeColors;
+  typography: ThemeTypography;
+  spacing: ThemeSpacing;
+  borderRadius: ThemeBorderRadius;
+  shadows: ThemeShadows;
+  transitions: ThemeTransitions;
+  breakpoints: ThemeBreakpoints;
+  zIndex: ThemeZIndex;
+  components?: ThemeComponents;
+};
+
+/**
+ * Theme mode type with extendable variants
+ */
+export type ThemeMode = ThemeVariant | string;
